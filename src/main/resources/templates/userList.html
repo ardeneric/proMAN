@@ -1,0 +1,104 @@
+<!Doctype>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header::links"></head>
+
+<body>
+
+	<div class="wrapper">
+
+		<div th:include="fragments/sidebar"></div>
+		<!-- Left Sidebar End -->
+		<div class="main-panel">
+			 <div th:replace="fragments/header :: frag(${value})"></div>
+			<div class="content">
+			
+			<button class= "btn btn-default" data-toggle="modal" data-target="#myModal">Add user</button>
+				
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>	
+								<th>Firstname</th>
+								<th>Lastname</th>
+								<th>Username</th>
+								<th>Address</th>
+								<th>City</th>
+								<th>Country</th>
+								<th>Role</th>
+								<th>Delete/Update</th>
+				
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="item : ${users}">
+								<td th:text="${item.firstname}"></td>
+								<td th:text="${item.lastname}"></td>
+								<td th:text="${item.username}"></td>
+								<td th:text="${item.address}"></td>
+								<td th:text="${item.city}"></td>
+								<td th:text="${item.country}"></td>
+								<td th:text="${item.roleId.roleName}"></td>
+								<td>
+								<form th:action="@{|/deleteUser/${item.id}|}" th:method="delete">
+									<button class="btn btn-default" type="submit">Delete</button>
+								</form>
+								<form th:action="@{|/updateUser/${item.id}|}" th:method="put">
+									<button class="btn btn-default" type="submit" data-target="#myModal">Update</button>
+								</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+					<div >
+						<p ></p>
+					</div>
+
+
+
+				</div>
+				<div th:include="fragments/footer"></div>
+			<!-- footer  -->
+		</div>
+	</div>
+
+<!-- Modal -->
+				<div id="myModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Add User</h4>
+							</div>
+							<div class="modal-body">
+								<form th:action="@{/addUser}" class="form-addUser" method = "post" th:object="${user}">
+					                <input  th:field="*{firstname}" class="form-control" placeholder="First Name" autofocus>
+					                <input th:field="*{lastname}" class="form-control" placeholder="Last Name">
+					                <input th:field="*{city}" class="form-control" placeholder="city">
+					                <input th:field="*{country}" class="form-control" placeholder="country">
+					                <input th:field="*{address}" class="form-control" placeholder="address">
+					                <input th:field="*{postalcode}" class="form-control" placeholder="postalcode">
+					                 <input th:field="*{password}" class="form-control" placeholder="password">
+					                <select th:field="*{roleId.id}">
+					               
+					                <option value="1">ADMIN</option>
+					                <option value="2">SUPER USER</option>
+					                <option value="3">USER</option>
+					                </select> 
+					                <button class="btn btn-default" type="submit">Add User</button>
+            					</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+</body>
+</html>

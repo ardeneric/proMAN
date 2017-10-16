@@ -1,0 +1,57 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<div class="sidebar" data-color="purple" data-image="/img/sidebar-5.jpg">
+
+    	<div th:fragment="frag (name)" class="sidebar-wrapper">
+    
+
+            <div class="logo">
+                <a href="#" class="simple-text" th:text="${name} + ' ProMAN'">
+                    
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="dashboard.html" th:href="@{/dashboard}">
+                        <i class="pe-7s-graph"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="user.html" th:href="@{/User}">
+                        <i class="pe-7s-user"></i>
+                        <p>User Profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="userList.html" th:href="@{/userList}">
+                        <i class="pe-7s-note2"></i>
+                        <p>User List</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="task.html" th:href="@{/task.html}">
+                        <i class="pe-7s-news-paper"></i>
+                        <p>Task</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html">
+                        <i class="pe-7s-bell"></i>
+                        <p>Notifications</p>
+                    </a>
+                </li>
+            </ul>
+            
+			<script>
+			$('.nav li').click(function(e) {
+				$('.nav li.active').removeClass('active');
+				$(this).addClass('active');
+			
+			});
+		</script>
+	</div>
+    </div>
+    </html>
+    

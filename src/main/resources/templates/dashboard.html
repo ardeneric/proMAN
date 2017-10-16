@@ -1,0 +1,24 @@
+<!Doctype>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/header::links"></head>
+
+<body>
+
+	<div class="wrapper">
+
+		<div th:include="fragments/sidebar"></div>
+
+		<div class="main-panel">
+			 <div th:replace="fragments/header :: frag(${value})"></div>
+			<div class="content">
+				
+		</div>
+		<div th:include="fragments/footer"></div>
+			<!-- footer  -->
+		</div>
+	</div>
+
+
+</body>
+</html>
