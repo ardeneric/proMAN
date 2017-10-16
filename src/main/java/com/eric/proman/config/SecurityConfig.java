@@ -40,11 +40,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				.antMatchers("/userList").hasRole("USER")
 				.antMatchers("/**").authenticated()
-				
 				.and()
 				.formLogin()
 					.loginPage("/login").permitAll()
-					.failureUrl("/login-error");
+					.failureUrl("/login-error")
+					.and()
+					.exceptionHandling()
+					.accessDeniedPage("/login");
+					
+		          
 	}
 	
 	@Autowired
