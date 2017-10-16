@@ -21,6 +21,11 @@ public class SecurityController {
 	public String login() {
 		return "login";
 	}
+	
+	@RequestMapping("/logout")
+	public String logout() {
+		return "redirect:/login";
+	}
 
 	@RequestMapping("/login-error")
 	public String loginError(Model model) {
