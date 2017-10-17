@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-
+		
 
 
                 <div class="row">
@@ -70,22 +70,20 @@
                                 <p class="category">Messaging system for users</p>
                             </div>
                             <div class="content">
-								<div class="form-group">
+			
 								<label for="usertype">Select User</label>
 							    <br>
-							    <select class="selectpicker" data-live-search="true">
-							      
-								  <option th:each="item : ${userlist}" th:text="${item.firstname + ' ' + item.lastname}" th:value="${item.firstname}"></option>
-								
+							    <select class="selectpicker" data-live-search="true" id="dropdown">  
+								  <option class="user" th:each="item : ${userlist}" th:text="${item.firstname + ' ' + item.lastname}" th:value="${item.firstname}"></option>
 								</select>
 								<br>
 							    <br>	
 							    
 							    <label for="Text">Message Body</label>
-							    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+							    <textarea class="form-control" id="MessageBody" ></textarea>
 							    <br>
 							    <button type="button" class="btn btn-primary">Send</button>
-							  </div>
+							  
                                 <div class="footer">
                                     <hr>
                                     <div class="stats">
@@ -225,6 +223,12 @@
 		</div>
 	</div>
 
-
+	<script>	
+		$(document).ready(function () {
+		  $('.btn-group bootstrap-select open').on('click', function () {
+		 	alert(1);
+		  });
+		});
+	</script>
 </body>
 </html>
