@@ -22,7 +22,6 @@ import com.eric.proman.service.UserService;
 public class UserListController {
 	
 	@Autowired 
-//	@Qualifier("userServiceImpl")
 	UserService userservice;
 	
 	@Autowired
