@@ -73,8 +73,10 @@
 			
 								<label for="usertype">Select User</label>
 							    <br>
-							    <select class="selectpicker" data-live-search="true" id="dropdown">  
-								  <option class="user" th:each="item : ${userlist}" th:text="${item.firstname + ' ' + item.lastname}" th:value="${item.firstname}"></option>
+							    <select class="selectpicker" data-live-search="true" multiple>  
+								  <option class="user" th:each="item : ${userlist}" 
+								  th:text="${item.firstname + ' ' + item.lastname}" 
+								  th:value="${item.firstname}"></option>
 								</select>
 								<br>
 							    <br>	
@@ -223,12 +225,7 @@
 		</div>
 	</div>
 
-	<script>	
-		$(document).ready(function () {
-		  $('.btn-group bootstrap-select open').on('click', function () {
-		 	alert(1);
-		  });
-		});
-	</script>
+	
+	
 </body>
 </html>
