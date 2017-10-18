@@ -24,7 +24,8 @@
                         <p>User Profile</p>
                     </a>
                 </li>
-                <li>
+                
+                <li sec:authorize="hasAuthority('SUPERUSER')">
                     <a href="userList.html" th:href="@{/userList}">
                         <i class="pe-7s-note2"></i>
                         <p>User List</p>

@@ -7,12 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.eric.proman.service.UserService;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User implements Serializable, UserDetails {
@@ -141,10 +144,7 @@ public class User implements Serializable, UserDetails {
 		this.roleId = roleId;
 	}
 
-	/*public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	*/
+	
 	public Role getRoleId() {
 		return roleId;
 	}
@@ -156,8 +156,11 @@ public class User implements Serializable, UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return null;
-	}
+		 List<SimpleGrantedAuthority> authorities=new ArrayList<SimpleGrantedAuthority>();
+		   
+		        authorities.add(new SimpleGrantedAuthority(roleId.getRoleName()));
+		  
+		    return authorities;	}
 
 	@Override
 	public String getPassword() {
