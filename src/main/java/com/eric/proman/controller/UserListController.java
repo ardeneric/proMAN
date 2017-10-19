@@ -44,8 +44,10 @@ public class UserListController {
 	
 
 	@PostMapping("/addUser")
-	public String addUserPost(User user) {
+	public String addUserPost(User user, Principal principal) {
 		System.out.println("user " + user.getFirstname());
+		User userCreator = userrepository.findByUsername(principal.getName());
+		user.setCreatedBy(userCreator.getId());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userservice.AddUser(user);
 		return "redirect:/userList";
@@ -59,8 +61,10 @@ public class UserListController {
 	}
 	
 	@PutMapping("/updateUser/{id}")
-	public String updateUser(@PathVariable String id) {
-		return id;
+	public String updateUser(@PathVariable Integer id) {
+		User user = userrepository.findOne(id);
+		userrepository.save(user);
+		return "redirect:/userList";
 		
 	}
 		
