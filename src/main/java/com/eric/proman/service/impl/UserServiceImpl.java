@@ -25,6 +25,11 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 
+	@Override
+	public List<User> findByCreatedBy(Integer createdBy) {
+		return userrepository.findByCreatedBy(createdBy);
+	}
+
 	
 
 }

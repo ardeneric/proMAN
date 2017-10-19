@@ -51,13 +51,16 @@ public class User implements Serializable, UserDetails {
 	
 	private String password;
 	
+	@Column(name = "createdBy")
+	private Integer createdBy;
+	
 	@ManyToOne
 	@JoinColumn(name = "roleId", referencedColumnName = "id")	
 	private Role roleId;
-
+	
 
 	public User(Integer id, String firstname, String lastname, String username, String address, String city,
-			String country, String postalcode, Role roleId) {
+			String country, String postalcode, String password, Integer createdBy, Role roleId) {
 		super();
 		this.id = id;
 		this.firstname = firstname;
@@ -67,8 +70,21 @@ public class User implements Serializable, UserDetails {
 		this.city = city;
 		this.country = country;
 		this.postalcode = postalcode;
+		this.password = password;
+		this.createdBy = createdBy;
 		this.roleId = roleId;
 	}
+
+	
+	public Integer getCreatedBy() {
+		return createdBy;
+	}
+
+
+	public void setCreatedBy(Integer createdBy) {
+		this.createdBy = createdBy;
+	}
+
 
 	public User() {
 		
@@ -155,12 +171,12 @@ public class User implements Serializable, UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
 		 List<SimpleGrantedAuthority> authorities=new ArrayList<SimpleGrantedAuthority>();
 		   
 		        authorities.add(new SimpleGrantedAuthority(roleId.getRoleName()));
 		  
-		    return authorities;	}
+		    return authorities;	
+		    }
 
 	@Override
 	public String getPassword() {

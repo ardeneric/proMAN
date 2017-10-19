@@ -1,5 +1,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+	
 <div class="sidebar" data-color="purple" data-image="/img/sidebar-5.jpg">
 
     	<div th:fragment="frag (name)" class="sidebar-wrapper">
@@ -25,8 +27,8 @@
                     </a>
                 </li>
                 
-                <li sec:authorize="hasAuthority('SUPERUSER')">
-                    <a href="userList.html" th:href="@{/userList}">
+                <li th:if="${#request.isUserInRole('SUPERUSER') || #request.isUserInRole('ADMIN') }">
+                    <a href="userList.html" th:href="@{/userList}" >
                         <i class="pe-7s-note2"></i>
                         <p>User List</p>
                     </a>

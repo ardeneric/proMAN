@@ -1,5 +1,6 @@
 	package com.eric.proman.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,26 +32,19 @@ public class UserListController {
 	UserRepository userrepository;
 	
 	@RequestMapping("/userList")
-	private String userlist(Model model) {
+	private String userlist(Model model, Principal principal) {
 		List<User> userlist = new ArrayList<>();
-		userlist = userservice.AllUsers();
+		User user = userrepository.findByUsername(principal.getName());
+		userlist = userservice.findByCreatedBy(user.getId());
 		model.addAttribute("users", userlist);
 		model.addAttribute("value", "User List");
 		model.addAttribute("user", new User());
 		return "userList";
 	}
 	
-/*
-	@RequestMapping(path = "/addUser",  method = RequestMethod.POST)
-	public String addUser(Model model, User user) {
-		//save
-		return "redirect:/User";
-	}*/
-	
+
 	@PostMapping("/addUser")
 	public String addUserPost(User user) {
-		//save
-		//return
 		System.out.println("user " + user.getFirstname());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userservice.AddUser(user);

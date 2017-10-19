@@ -78,11 +78,12 @@
 								<form th:action="@{/addUser}" class="form-addUser" method = "post" th:object="${user}">
 					                <input  th:field="*{firstname}" class="form-control" placeholder="First Name" autofocus>
 					                <input th:field="*{lastname}" class="form-control" placeholder="Last Name">
+					                <input th:field="*{username}" class="form-control" placeholder="Username">
 					                <input th:field="*{city}" class="form-control" placeholder="city">
 					                <input th:field="*{country}" class="form-control" placeholder="country">
 					                <input th:field="*{address}" class="form-control" placeholder="address">
 					                <input th:field="*{postalcode}" class="form-control" placeholder="postalcode">
-					                 <input th:field="*{password}" class="form-control" placeholder="password">
+					                <input th:field="*{password}" class="form-control" placeholder="password">
 					                <select th:field="*{roleId.id}">
 					               
 					                <option value="1">ADMIN</option>

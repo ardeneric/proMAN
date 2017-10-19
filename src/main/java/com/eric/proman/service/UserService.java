@@ -8,6 +8,7 @@ public interface UserService {
 	
 	public List<User> AllUsers();
 	public User AddUser(User user);
+	public List<User> findByCreatedBy(Integer createdBy);
 	
 
 }
