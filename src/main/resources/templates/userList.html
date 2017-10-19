@@ -45,8 +45,8 @@
 								<form th:action="@{|/deleteUser/${item.id}|}" th:method="delete">
 									<button class="btn btn-default" type="submit">Delete</button>
 								</form>
-								<form  th:method="put">
-									<button class="btn btn-default" type="submit" data-target="#myModalTwo">Update</button>
+								<form th:action="@{|/updateUser/${item.id}|}" th:method="put">
+									<button class="btn btn-default" type="submit" data-target="#myModal">Update</button>
 								</form>
 								</td>
 							</tr>
@@ -77,49 +77,6 @@
 							</div>
 							<div class="modal-body">
 								<form th:action="@{/addUser}" class="form-addUser" method = "post" th:object="${user}">
-					                <input  th:field="*{firstname}" class="form-control" placeholder="First Name" autofocus>
-					                <br>
-					                <input th:field="*{lastname}" class="form-control" placeholder="Last Name">
-					                <br>
-					                <input th:field="*{username}" class="form-control" placeholder="Username">
-					                <br>
-					                <input th:field="*{city}" class="form-control" placeholder="city">
-					                <br>
-					                <input th:field="*{country}" class="form-control" placeholder="country">
-					                <br>
-					                <input th:field="*{address}" class="form-control" placeholder="address">
-					                <br>
-					                <input th:field="*{postalcode}" class="form-control" placeholder="postalcode">
-					                <br>
-					                <input th:field="*{password}" class="form-control" placeholder="password" type="password">
-					                <br>
-					                <select class="selectpicker" data-live-search="true" th:field="*{roleId.id}">
-					                <option value="1">ADMIN</option>
-					                <option value="2">SUPER USER</option>
-					                <option value="3">USER</option>
-					                </select> 
-					                <button class="btn btn-primary" type="submit">Add User</button>
-            					</form>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
-							</div>
-						</div>
-
-					</div>
-				</div>
-				<div id="myModalTwo" class="modal fade" role="dialog">
-					<div class="modal-dialog">
-
-						<!-- Modal content-->
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-								<h4 class="modal-title">Update User</h4>
-							</div>
-							<div class="modal-body">
-								<form th:action="@{|/updateUser/${item.id}|}" class="form-addUser" method = "post" th:object="${user}">
 					                <input  th:field="*{firstname}" class="form-control" placeholder="First Name" autofocus>
 					                <br>
 					                <input th:field="*{lastname}" class="form-control" placeholder="Last Name">
