@@ -26,8 +26,8 @@ public class IndexController {
 	@RequestMapping(path = {"/dashboard" }, method = GET)
 	public String index(Model model, Principal principal) {
 		List<User> userList = new ArrayList<>();
-		userList = userservice.AllUsers();
 		User user = userRepository.findByUsername(principal.getName());
+		userList = userservice.findByCreatedBy(user.getId());
 		model.addAttribute("value", "DashBoard");
 		model.addAttribute("name" , user.getFirstname() );
 		model.addAttribute("userlist", userList);

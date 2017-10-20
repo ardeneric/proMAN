@@ -11,6 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.eric.proman.service.UserService;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -55,7 +56,8 @@ public class User implements Serializable, UserDetails {
 	private Integer createdBy;
 	
 	@ManyToOne
-	@JoinColumn(name = "roleId", referencedColumnName = "id")	
+	@JoinColumn(name = "roleId", referencedColumnName = "id")
+	@JsonBackReference
 	private Role roleId;
 	
 

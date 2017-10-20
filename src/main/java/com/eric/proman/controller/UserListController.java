@@ -9,11 +9,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.eric.proman.model.User;
 import com.eric.proman.repository.UserRepository;
@@ -38,6 +39,7 @@ public class UserListController {
 		userlist = userservice.findByCreatedBy(user.getId());
 		model.addAttribute("users", userlist);
 		model.addAttribute("value", "User List");
+		model.addAttribute("name" , user.getFirstname() );
 		model.addAttribute("user", new User());
 		return "userList";
 	}
@@ -60,12 +62,20 @@ public class UserListController {
 		return "redirect:/userList";
 	}
 	
-	@PutMapping("/updateUser/{id}")
-	public String updateUser(@PathVariable Integer id) {
+	@PostMapping("/updateUser")
+	public String updateUser(User user, Model model, Principal principal) {
+		User userCreator = userrepository.findByUsername(principal.getName());
+		user.setCreatedBy(userCreator.getId());
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		userservice.AddUser(user);
+		return "redirect:/userList";	
+	}
+	
+	@ResponseBody
+	@GetMapping("/user/{id}")
+	public User getUser(@PathVariable Integer id) {
 		User user = userrepository.findOne(id);
-		userrepository.save(user);
-		return "redirect:/userList";
-		
+		return user;
 	}
 		
 
