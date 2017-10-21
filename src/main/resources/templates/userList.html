@@ -137,7 +137,7 @@
 					                <br>
 					                <input  class="form-control password" placeholder="password" type="password" th:field="*{password}">
 					                <br>
-					                <select class="selectpicker role" data-live-search="true" th:field="*{roleId.id}">
+					                <select name="selValue" class="selectpicker role" data-live-search="true" th:field="*{roleId.id}">
 					                <option value="1">ADMIN</option>
 					                <option value="2">SUPER USER</option>
 					                <option value="3">USER</option>
@@ -176,7 +176,27 @@
 				$(".postalcode").val(data.postalcode);
 				$(".password").val(data.password);
 			    $(".role").val(data.authorities[0].authority);
-				console.log(data.authorities[0].authority)
+			  
+				if(data.authorities[0].authority == "ROLE_ADMIN" ){
+					
+					$('.role option').removeClass('selcted active').removeClass('selected');
+					$(".role option[value='1']").addClass('selected active');
+					$('.role').selectpicker("refresh");
+					
+				}else if (data.authorities[0].authority == "ROLE_SUPERUSER"){
+					
+					$('.role option').removeClass('selcted active').removeClass('selected');
+					$(".role option[value='2']").addClass('selected active');
+					$('.role').selectpicker("refresh");
+					
+				}else if (data.authorities[0].authority == "ROLE_USER"){
+					
+					$('.role option').removeClass('selcted active').removeClass('selected');
+					$(".role option[value='3']").addClass('selected active');
+					$('.role').selectpicker("refresh");
+					
+				}
+				
 				
 			})
 		}
