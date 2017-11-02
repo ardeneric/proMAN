@@ -42,11 +42,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/**").authenticated()			
 				.and()
 				.formLogin()
-					.loginPage("/login").permitAll()
-					.failureUrl("/login-error")
+						.loginPage("/login").permitAll()
+						.failureUrl("/login-error")
 					.and()
-					.exceptionHandling()
-					.accessDeniedPage("/login");
+						.logout()
+						.logoutUrl("/logout").permitAll()
+					.and()
+						.exceptionHandling()
+						.accessDeniedPage("/login");
 					
 		          
 	}
@@ -54,7 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-		.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder() );
+		.userDetailsService(userDetailsService)
+		.passwordEncoder(passwordEncoder());
 			//.inMemoryAuthentication()
 				//.withUser("user").password("password").roles("USER");
 	}
