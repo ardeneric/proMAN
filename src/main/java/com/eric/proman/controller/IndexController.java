@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.eric.proman.model.User;
+import com.eric.proman.entity.User;
 import com.eric.proman.repository.UserRepository;
 import com.eric.proman.service.UserService;
 

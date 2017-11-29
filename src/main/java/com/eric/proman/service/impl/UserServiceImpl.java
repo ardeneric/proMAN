@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.eric.proman.model.User;
+
+import com.eric.proman.entity.User;
 import com.eric.proman.repository.UserRepository;
 import com.eric.proman.service.UserService;
 

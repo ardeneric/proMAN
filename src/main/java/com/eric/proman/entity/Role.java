@@ -1,4 +1,4 @@
-package com.eric.proman.model;
+package com.eric.proman.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

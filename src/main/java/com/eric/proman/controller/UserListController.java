@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.eric.proman.model.User;
+import com.eric.proman.entity.User;
 import com.eric.proman.repository.UserRepository;
 import com.eric.proman.service.UserService;
 

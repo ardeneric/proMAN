@@ -2,7 +2,7 @@ package com.eric.proman.service;
 
 import java.util.List;
 
-import com.eric.proman.model.User;
+import com.eric.proman.entity.User;
 
 public interface UserService {
 	

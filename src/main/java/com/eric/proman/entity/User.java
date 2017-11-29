@@ -1,4 +1,4 @@
-package com.eric.proman.model;
+package com.eric.proman.entity;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
