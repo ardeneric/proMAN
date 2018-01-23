@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.eric.proman.entity.User;
+import com.eric.proman.entity.Supervisor;
 import com.eric.proman.repository.UserRepository;
 import com.eric.proman.service.UserService;
 
@@ -25,11 +25,11 @@ public class IndexController {
 	
 	@RequestMapping(path = {"/dashboard" }, method = GET)
 	public String index(Model model, Principal principal) {
-		List<User> userList = new ArrayList<>();
-		User user = userRepository.findByUsername(principal.getName());
-		userList = userservice.findByCreatedBy(user.getId());
+		List<Supervisor> userList = new ArrayList<>();
+		Supervisor supervisor = userRepository.findByUsername(principal.getName());
+		userList = userservice.findByCreatedBy(supervisor.getId());
 		model.addAttribute("value", "DashBoard");
-		model.addAttribute("name" , user.getFirstname() );
+		model.addAttribute("name" , supervisor.getFirstname() );
 		model.addAttribute("userlist", userList);
 		return "dashboard";
 	}

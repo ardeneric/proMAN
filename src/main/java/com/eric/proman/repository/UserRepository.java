@@ -8,14 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.eric.proman.entity.User;
+import com.eric.proman.entity.Supervisor;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer>{
+public interface UserRepository extends JpaRepository<Supervisor, Integer>{
 	
- @Query("from User u where u.username=:username")
-  public User findByUsername(@Param("username") String username);
+ @Query("from Supervisor s where s.username=:username")
+  public Supervisor findByUsername(@Param("username") String username);
  
- public List<User> findByCreatedBy(Integer createdBy);
+ public List<Supervisor> findByCreatedBy(Integer createdBy);
 
 }

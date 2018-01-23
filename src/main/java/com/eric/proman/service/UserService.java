@@ -2,13 +2,13 @@ package com.eric.proman.service;
 
 import java.util.List;
 
-import com.eric.proman.entity.User;
+import com.eric.proman.entity.Supervisor;
 
 public interface UserService {
 	
-	public List<User> AllUsers();
-	public User AddUser(User user);
-	public List<User> findByCreatedBy(Integer createdBy);
+	public List<Supervisor> AllUsers();
+	public Supervisor AddUser(Supervisor supervisor);
+	public List<Supervisor> findByCreatedBy(Integer createdBy);
 	
 
 }

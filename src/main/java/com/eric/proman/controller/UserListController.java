@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.eric.proman.entity.User;
+import com.eric.proman.entity.Supervisor;
 import com.eric.proman.repository.UserRepository;
 import com.eric.proman.service.UserService;
 
@@ -34,24 +34,23 @@ public class UserListController {
 	
 	@RequestMapping("/userList")
 	private String userlist(Model model, Principal principal) {
-		List<User> userlist = new ArrayList<>();
-		User user = userrepository.findByUsername(principal.getName());
-		userlist = userservice.findByCreatedBy(user.getId());
+		List<Supervisor> userlist = new ArrayList<>();
+		Supervisor supervisor = userrepository.findByUsername(principal.getName());
+		userlist = userservice.findByCreatedBy(supervisor.getId());
 		model.addAttribute("users", userlist);
 		model.addAttribute("value", "User List");
-		model.addAttribute("name" , user.getFirstname() );
-		model.addAttribute("user", new User());
+		model.addAttribute("name" , supervisor.getFirstname() );
+		model.addAttribute("user", new Supervisor());
 		return "userList";
 	}
 	
 
 	@PostMapping("/addUser")
-	public String addUserPost(User user, Principal principal) {
-		System.out.println("user " + user.getFirstname());
-		User userCreator = userrepository.findByUsername(principal.getName());
-		user.setCreatedBy(userCreator.getId());
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		userservice.AddUser(user);
+	public String addUserPost(Supervisor supervisor, Principal principal) {
+		Supervisor userCreator = userrepository.findByUsername(principal.getName());
+		supervisor.setCreatedBy(userCreator.getId());
+		supervisor.setPassword(passwordEncoder.encode(supervisor.getPassword()));
+		userservice.AddUser(supervisor);
 		return "redirect:/userList";
 	}
 	
@@ -63,19 +62,19 @@ public class UserListController {
 	}
 	
 	@PostMapping("/updateUser")
-	public String updateUser(User user, Model model, Principal principal) {
-		User userCreator = userrepository.findByUsername(principal.getName());
-		user.setCreatedBy(userCreator.getId());
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		userservice.AddUser(user);
+	public String updateUser(Supervisor supervisor, Model model, Principal principal) {
+		Supervisor userCreator = userrepository.findByUsername(principal.getName());
+		supervisor.setCreatedBy(userCreator.getId());
+		supervisor.setPassword(passwordEncoder.encode(supervisor.getPassword()));
+		userservice.AddUser(supervisor);
 		return "redirect:/userList";	
 	}
 	
 	@ResponseBody
 	@GetMapping("/user/{id}")
-	public User getUser(@PathVariable Integer id) {
-		User user = userrepository.findOne(id);
-		return user;
+	public Supervisor getUser(@PathVariable Integer id) {
+		Supervisor supervisor = userrepository.findOne(id);
+		return supervisor;
 	}
 		
 

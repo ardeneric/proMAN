@@ -27,13 +27,13 @@ public class Role implements Serializable {
 
 	@OneToMany(mappedBy = "roleId", cascade = CascadeType.ALL)
 	@JsonManagedReference
-	private List<User> user = new ArrayList<>();
+	private List<Supervisor> supervisor = new ArrayList<>();
 
-	public Role(Integer id, String roleName, List<User> user) {
+	public Role(Integer id, String roleName, List<Supervisor> supervisor) {
 		super();
 		this.id = id;
 		this.roleName = roleName;
-		this.user = user;
+		this.supervisor = supervisor;
 	}
 
 	public Role() {
@@ -56,12 +56,12 @@ public class Role implements Serializable {
 		this.roleName = roleName;
 	}
 
-	public List<User> getUser() {
-		return user;
+	public List<Supervisor> getUser() {
+		return supervisor;
 	}
 
-	public void setUser(List<User> user) {
-		this.user = user;
+	public void setUser(List<Supervisor> supervisor) {
+		this.supervisor = supervisor;
 	}
 
 	public static long getSerialversionuid() {
