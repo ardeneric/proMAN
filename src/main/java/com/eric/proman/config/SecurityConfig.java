@@ -57,8 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-		.userDetailsService(userDetailsService)
-		.passwordEncoder(passwordEncoder());
+			.userDetailsService(userDetailsService)
+			.passwordEncoder(passwordEncoder());
 			//.inMemoryAuthentication()
 				//.withUser("user").password("password").roles("USER");
 	}
